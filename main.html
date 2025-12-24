@@ -5,90 +5,34 @@
   <title>OTP Verification</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6fb;
+      margin: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background: #f5f7fb;
+      font-family: Arial, sans-serif;
     }
 
     .container {
       background: white;
-      padding: 30px;
-      border-radius: 8px;
+      width: 600px;
+      padding: 40px;
+      border-radius: 10px;
+      border: 2px solid #000;
       text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     #verification_heading {
       margin-bottom: 10px;
+      font-size: 22px;
     }
 
     #verification_subtext {
-      margin-bottom: 20px;
-      color: #555;
-    }
-
-    .code-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .code {
-      width: 40px;
-      height: 50px;
-      font-size: 24px;
-      text-align: center;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .code:focus {
-      border-color: #3b82f6;
-      outline: none;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <h2 id="verification_heading">Verify Your Account</h2>
-
-    <p id="verification_subtext">
-      Enter the 6-digit OTP sent to your registered mobile number.
-    </p>
-
-    <div class="code-container">
-      <input type="text" maxlength="1" class="code" />
-      <input type="text" maxlength="1" class="code" />
-      <input type="text" maxlength="1" class="code" />
-      <input type="text" maxlength="1" class="code" />
-      <input type="text" maxlength="1" class="code" />
-      <input type="text" maxlength="1" class="code" />
-    </div>
-  </div>
-
-  <script>
-    const codes = document.querySelectorAll('.code');
-
-    codes[0].focus();
-
-    codes.forEach((code, idx) => {
-
-      code.addEventListener('keydown', (e) => {
-
-        if (e.key >= 0 && e.key <= 9) {
-          code.value = '';
-          setTimeout(() => {
-            if (codes[idx + 1]) {
-              codes[idx + 1].focus();
-            }
-          }, 10);
-        }
-
-        else if (e.key === 'Backspace') {
-          if (code.value === '' && codes[idx - 1]) {
-            codes
+      font-size: 14px;
+      color: #555
