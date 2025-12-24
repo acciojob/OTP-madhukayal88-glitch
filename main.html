@@ -1,38 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>OTP Verification</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #f5f7fb;
-      font-family: Arial, sans-serif;
+      margin: 0;
     }
 
     .container {
-      background: white;
       width: 600px;
       padding: 40px;
+      background: white;
+      border: 2px solid black;
       border-radius: 10px;
-      border: 2px solid #000;
       text-align: center;
     }
 
     #verification_heading {
-      margin-bottom: 10px;
       font-size: 22px;
+      margin-bottom: 10px;
     }
 
     #verification_subtext {
       font-size: 14px;
-      color: #555
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .code-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .code {
+      width: 60px;
+      height: 70px;
+      font-size: 36px;
+      text-align: center;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    .code:focus {
+      outline: none;
+      border-color: black;
+    }
+
+    .note {
+      background: #eee;
+      padding: 15px;
+      font-size: 12px;
+      color: #666;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h2 id="verification_heading">Verify Your Account</h2>
+
+    <p id="verification_subtext">
+      We emailed you the six digit code to acciojob@email.com
+      Enter the code below to confirm your email address.
+    </p>
+
+    <div class="code-container">
+      <input id="code-1" class="code" maxlength="1" />
+      <input id="code-2" class="code" maxlength="1" />
+      <input id="code-3" class="code" maxlength="1" />
+      <input id="code-4" class="code" maxlength="1" />
+      <input id="code-5" class="code" maxlength="1" />
+      <input id="code-6" class="code" maxlength="1" />
+    </div>
+
+    <div class="note">
+      This is design only. We didn't actually send you an email as we
+      don't have your email, right?
+    </div>
+
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll('.code');
+
+    inputs[0].focus();
+
+    inputs.forEach((input, index) => {
+
+      input.addEventListener('input', () => {
+        if (input.value.match(/^[0-9]$/)) {
+          if (inputs[index + 1]) {
+            inputs[index + 1].focus();
+          }
+        } else {
+          input.value = '';
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace') {
+          if (input.value === '' && inputs[index - 1]) {
+            inputs[index - 1].focus();
+            inputs[index - 1].value = '';
+          }
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>
